@@ -14,3 +14,10 @@ This repository provides a lightweight and easy-to-use static file server for yo
   - and more! (depending on configuration)
 
 ### How to use
+1. Using command prompt
+  You can move into the webserver.exe folder and run in the command prompt
+  ```
+  webserver <path-to-the-folder> <port>
+  ```
+
+2. Using application prompt
