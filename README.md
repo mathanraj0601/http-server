@@ -14,7 +14,7 @@ This repository provides a lightweight and easy-to-use static file server for yo
    - JavaScript (JS)
    - Images (e.g., JPG, PNG, GIF)
    - And more! (depending on configuration)
- - Framework Build Support: Capable of build files of popular frameworks like Angular and React.
+ - Framework Build Support: Can build files of popular frameworks like Angular and React.
 
 ### Technologies:
 - C#
@@ -22,10 +22,21 @@ This repository provides a lightweight and easy-to-use static file server for yo
 - TCP/IP
 
 ### How to use
-1. Using command prompt
+1. Using the command prompt
   You can move into the webserver.exe folder and run in the command prompt
   ```
   webserver <path-to-the-folder> <port>
   ```
+2. Using application prompt ( demo )
+   
+https://github.com/mathanraj0601/http-server/assets/98396468/b59ca401-dc1c-4a5f-87d6-0a4c9548650a
 
-2. Using application prompt
+
+#### Learnings and Documentation:
+Curious to dive deeper? I've documented my learnings and insights throughout this project. Read the [documentation](https://deeply-sneeze-d1c.notion.site/Simple-HTTP-Server-ab6f5c5e16d4411da70d8b85971f268b) here.
+
+
+#### Download and Installation:
+Ready to give it a try? You can download and install the executable [here](). Password: Mr
+
+
