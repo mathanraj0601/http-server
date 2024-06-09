@@ -37,6 +37,6 @@ Curious to dive deeper? I've documented my learnings and insights throughout thi
 
 
 #### Download and Installation:
-Ready to give it a try? You can download and install the executable [here](). Password: Mr
+Ready to give it a try? You can download and install the executable [here](https://github.com/mathanraj0601/http-server/releases). Password: Mr
 
 
