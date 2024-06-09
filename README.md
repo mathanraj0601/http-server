@@ -14,6 +14,7 @@ This repository provides a lightweight and easy-to-use static file server for yo
    - JavaScript (JS)
    - Images (e.g., JPG, PNG, GIF)
    - And more! (depending on configuration)
+ - Framework Build Support: Capable of build files of popular frameworks like Angular and React.
 
 ### Technologies:
 - C#
