@@ -8,24 +8,48 @@ namespace WebServer
     {
 
         // Default file location
-        static string _webRootUrl = $"wwwroot\\";
+        static string _webRootUrl = "";
         
         // Default port
         static int port = 12345;
         static void Main(string[] args)
         {
            
-            if (_webRootUrl == null || _webRootUrl == String.Empty)
+
+            if (args.Length >= 2)
             {
-                Console.WriteLine("No path is provided");
-                return;
+                if (args.Length >= 1)
+                    _webRootUrl = args[0];
+                if (args.Length >= 2)
+                    port = int.Parse(args[1]);
+              
+            }
+            else
+            {
+                Console.WriteLine("Default : Simple webserver static file");
+                Console.WriteLine("Enter the path of the web root directory: ");
+                var path = Console.ReadLine();
+                if (path != null && path != string.Empty)
+                {
+                    _webRootUrl = path ;
+                  
+                }
+
+                if ( _webRootUrl != string.Empty && !_webRootUrl.EndsWith("\\"))
+                    _webRootUrl += "\\";
+
+
+                Console.WriteLine("Default is 12345");
+                Console.WriteLine("Enter the port number: ");
+                var portStr = Console.ReadLine();
+                if (portStr != null && portStr != String.Empty)
+                {
+                    port = int.Parse(portStr);
+                }
+
             }
 
-
-            if(args.Length >= 1) 
-                _webRootUrl = args[0];
-            if (args.Length >=2)
-                port = int.Parse(args[1]);
+          
 
             TcpListener server = new TcpListener(IPAddress.Any, port);
             server.Start();
@@ -37,14 +61,7 @@ namespace WebServer
                 Console.WriteLine("Client connected!");
                 ThreadPool.SetMaxThreads(10, 10);
                 ThreadPool.QueueUserWorkItem(new WaitCallback(Respond), client);
-
-                // UN managed thread result in exhaustion
-                //Thread thread = new Thread(() => Respond(client));
-                //thread.Start();
-
             }
-
-
         }
 
          static async void Respond(Object? clientObject)
@@ -63,7 +80,7 @@ namespace WebServer
                 NetworkStream stream = client.GetStream();
                 byte[] buffer = new byte[1024];
                 int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length);
-                string requestData = Encoding.ASCII.GetString(buffer, 0, bytesRead);
+                string requestData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
                 string[] requestParts = requestData.Split(' '); // Split the request line into its parts
 
@@ -83,11 +100,11 @@ namespace WebServer
                 {
                     // Extracting file path
                     string filePath = string.Empty;
-                    if (url == "/")
+                    if (url == "/" || !url.Contains("."))
                         url = "/index.html";
                     filePath = $"{_webRootUrl}{url.Substring(1, url.Length - 1)}";
 
-
+               
                     if (File.Exists(filePath))
                     {
                         byte[] html = await File.ReadAllBytesAsync(filePath);
@@ -98,7 +115,7 @@ namespace WebServer
                                             "Content-Length: " + html.Length + "\r\n\r\n";
 
                         // Header 
-                        byte[] responseHeaderBytes = Encoding.ASCII.GetBytes(responseData);
+                        byte[] responseHeaderBytes = Encoding.UTF8.GetBytes(responseData);
 
                         // Reponse object 
                         byte[] responseBytes = new byte[responseHeaderBytes.Length + html.Length];

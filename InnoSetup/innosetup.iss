@@ -6,14 +6,14 @@
 #define MyAppPublisher "MR"
 #define MyAppURL "MR"
 #define MyAppExeName "WebServer.exe"
-#define MyAppAssocName MyAppName + ""
+#define MyAppAssocName MyAppName + " File"
 #define MyAppAssocExt ".myp"
 #define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{B148CD9D-BD2A-4634-9BB6-26A21BAD6515}
+AppId={{AEBD299A-B232-4331-BCB5-6D6E6CD41C8D}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -27,8 +27,9 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 OutputDir=D:\Github learning\WebServer\Setup
-OutputBaseFilename=setup
+OutputBaseFilename=mysetup
 SetupIconFile=C:\Users\madha\Downloads\cloud-server.ico
+Password=mr
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -41,9 +42,12 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "D:\Github learning\WebServer\WebServer\bin\Release\net6.0\publish\win-x64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Github learning\WebServer\WebServer\bin\Release\net6.0\publish\win-x64\favicon.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Github learning\WebServer\WebServer\bin\Release\net6.0\publish\win-x64\index.html"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Github learning\WebServer\WebServer\bin\Release\net6.0\publish\win-x64\script.js"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\Github learning\WebServer\WebServer\bin\Release\net6.0\publish\win-x64\style.css"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Github learning\WebServer\WebServer\bin\Release\net6.0\publish\win-x64\WebServer.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "D:\Github learning\WebServer\WebServer\bin\Release\net6.0\publish\win-x64\WebServer.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Github learning\WebServer\WebServer\bin\Release\net6.0\publish\win-x64\wwwroot\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
